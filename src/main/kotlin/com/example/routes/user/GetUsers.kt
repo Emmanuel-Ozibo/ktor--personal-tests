@@ -1,24 +1,45 @@
 package com.example.routes.user
 
-import com.example.models.User
+import com.example.database.daos.dbDaos
+import com.example.models.response.Response
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import java.util.*
 
-fun Route.getUsers(userList: MutableList<User>) {
+fun Route.getUsers() {
     get {
-        call.respond(userList)
+        val users = dbDaos.userDBDao.fetchUsers()
+        call.respond(
+            Response(
+                code = HttpStatusCode.OK.value,
+                message = HttpStatusCode.OK.description,
+                data = users
+            )
+        )
     }
 
-    get ("/{id?}") {
+    get("/{id?}") {
         val userId = call.parameters["id"]
-        val user = userList.find { it.id == userId }
+        val user = dbDaos.userDBDao.fetchUser(UUID.fromString(userId))
 
         if (user != null)
-            call.respond(user)
+            call.respond(
+                Response(
+                    code = HttpStatusCode.OK.value,
+                    message = HttpStatusCode.OK.description,
+                    data = user
+                )
+            )
 
         if (user == null)
-            call.respondText("User not found.", status = HttpStatusCode.BadRequest)
+            call.respond(
+                Response(
+                    code = HttpStatusCode.NotFound.value,
+                    message = "User not found.",
+                    data = null
+                )
+            )
     }
 }

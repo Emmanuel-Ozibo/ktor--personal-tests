@@ -8,7 +8,7 @@ fun Route.userRouting() {
     val userList = mutableListOf<User>()
 
     route("/users") {
-        getUsers(userList)
+        getUsers()
         saveUser(userList)
         modifyUser(userList)
         deleteUser(userList)
