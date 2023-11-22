@@ -4,5 +4,4 @@ data class DbDaos(
     val userDBDao: UserDAO = UserDAOImpl()
 )
 
-
 val dbDaos = DbDaos()

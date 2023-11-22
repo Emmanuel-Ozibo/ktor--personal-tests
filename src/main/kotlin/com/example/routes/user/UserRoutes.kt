@@ -1,6 +1,5 @@
 package com.example.routes.user
 
-
 import com.example.models.User
 import io.ktor.server.routing.*
 

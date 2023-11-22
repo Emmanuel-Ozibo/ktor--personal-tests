@@ -8,6 +8,7 @@ plugins {
     kotlin("jvm") version "1.9.20"
     id("io.ktor.plugin") version "2.3.6"
     kotlin("plugin.serialization") version "1.9.20"
+    id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
 }
 
 group = "com.example"
@@ -33,13 +34,13 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm")
     implementation("io.ktor:ktor-server-resources-jvm")
 
-    //DB
+    // DB
     implementation("org.jetbrains.exposed:exposed-core:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-dao:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposed_version")
     implementation("com.h2database:h2:$h2_version")
 
-    //Testing
+    // Testing
     testImplementation("io.ktor:ktor-server-tests-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }

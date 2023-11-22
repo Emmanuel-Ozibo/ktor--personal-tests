@@ -16,12 +16,15 @@ fun Route.modifyUser(userList: MutableList<User>) {
         val email = call.parameters["email"]
 
         val user = userList.find { it.id == userId }
-        if (firstName.isNotNull())
+        if (firstName.isNotNull()) {
             user?.firstName = firstName.orEmpty()
-        if (lastName.isNotNull())
+        }
+        if (lastName.isNotNull()) {
             user?.lastName = lastName.orEmpty()
-        if (email.isNotNull())
+        }
+        if (email.isNotNull()) {
             user?.email = email.orEmpty()
+        }
 
         val userIndex = userList.indexOf(user)
 

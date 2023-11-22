@@ -3,7 +3,6 @@ package com.example.database.daos
 import com.example.database.DatabaseFactory.dbQuery
 import com.example.models.User
 import com.example.models.Users
-import kotlinx.coroutines.runBlocking
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import java.util.UUID
@@ -40,7 +39,6 @@ class UserDAOImpl : UserDAO {
     override suspend fun deleteUser(id: UUID): Boolean = dbQuery {
         Users.deleteWhere { Users.id eq id } > 0
     }
-
 
     private fun mapRowToUser(resultRow: ResultRow): User {
         return User(
