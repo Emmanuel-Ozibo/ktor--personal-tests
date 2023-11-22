@@ -10,7 +10,6 @@ import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.post
 
-
 fun Route.saveUser() {
     post("/{id?}") {
         val user = call.receive<User>()

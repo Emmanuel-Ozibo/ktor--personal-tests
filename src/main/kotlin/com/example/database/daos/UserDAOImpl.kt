@@ -3,14 +3,14 @@ package com.example.database.daos
 import com.example.database.DatabaseFactory.dbQuery
 import com.example.models.User
 import com.example.models.Users
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
-import java.util.UUID
 import org.jetbrains.exposed.sql.ResultRow
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.update
+import java.util.UUID
 
 class UserDAOImpl : UserDAO {
     override suspend fun insertUser(firstName: String, lastName: String, email: String) = dbQuery {

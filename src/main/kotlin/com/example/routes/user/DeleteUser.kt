@@ -8,7 +8,6 @@ import io.ktor.server.response.respondText
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.delete
 
-
 fun Route.deleteUser(userList: MutableList<User>) {
     delete("/{id?}") {
         val userId = call.parameters["id"]

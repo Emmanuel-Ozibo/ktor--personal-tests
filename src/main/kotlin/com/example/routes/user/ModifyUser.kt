@@ -10,7 +10,6 @@ import io.ktor.server.response.respondText
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.patch
 
-
 fun Route.modifyUser(userList: MutableList<User>) {
     patch("/{id?}") {
         val userId = call.parameters["id"]

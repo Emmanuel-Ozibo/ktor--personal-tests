@@ -9,7 +9,6 @@ import io.ktor.server.routing.Route
 import io.ktor.server.routing.get
 import java.util.UUID
 
-
 fun Route.getUsers() {
     get {
         val users = dbDaos.userDBDao.fetchUsers()

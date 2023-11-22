@@ -8,7 +8,6 @@ import io.ktor.server.testing.testApplication
 import org.junit.Assert.assertEquals
 import kotlin.test.Test
 
-
 class ApplicationTest {
     @Test
     fun testRoot() = testApplication {
