@@ -9,7 +9,7 @@ fun Route.userRouting() {
 
     route("/users") {
         getUsers()
-        saveUser(userList)
+        saveUser()
         modifyUser(userList)
         deleteUser(userList)
     }
