@@ -1,5 +1,6 @@
 package com.example.plugins
 
+import com.example.routes.signup.signupRoute
 import com.example.routes.testRoute
 import com.example.routes.user.userRouting
 import io.ktor.server.application.Application
@@ -9,5 +10,6 @@ fun Application.configureRouting() {
     routing {
         testRoute()
         userRouting()
+        signupRoute()
     }
 }

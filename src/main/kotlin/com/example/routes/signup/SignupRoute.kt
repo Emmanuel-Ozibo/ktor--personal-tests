@@ -1,4 +1,4 @@
-package com.example.routes.user
+package com.example.routes.signup
 
 import com.example.database.daos.dbDaos
 import com.example.models.User
@@ -10,10 +10,12 @@ import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.post
 
-fun Route.saveUser() {
-    post("/{id?}") {
+
+fun Route.signupRoute() {
+    post ("signup") {
         val user = call.receive<User>()
-        val userInserted = dbDaos.userDBDao.insertUser(firstName = user.firstName, lastName = user.lastName, email = user.email)
+        val userInserted = dbDaos.userDBDao
+            .insertUser(firstName = user.firstName, lastName = user.lastName, email = user.email)
 
         if (userInserted != null) {
             call.respond(

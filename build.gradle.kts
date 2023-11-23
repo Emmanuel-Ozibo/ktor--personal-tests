@@ -33,6 +33,7 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm")
     implementation("io.ktor:ktor-server-resources-jvm")
+    implementation("io.ktor:ktor-server-auth-jvm")
 
     // DB
     implementation("org.jetbrains.exposed:exposed-core:$exposed_version")

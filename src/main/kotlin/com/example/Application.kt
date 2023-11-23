@@ -1,6 +1,7 @@
 package com.example
 
 import com.example.database.DatabaseFactory
+import com.example.plugins.configureAuthentication
 import com.example.plugins.configureMonitoring
 import com.example.plugins.configureResources
 import com.example.plugins.configureRouting
@@ -20,4 +21,5 @@ fun Application.module() {
     configureMonitoring()
     configureSerialization()
     configureRouting()
+    configureAuthentication()
 }
