@@ -11,11 +11,13 @@ data class User(
     var email: String
 )
 
+const val LETTER_LENGTH = 128
+
 object Users : Table() {
     val id = uuid("id").autoGenerate()
-    val firstName = varchar("firstName", 128)
-    val lastName = varchar("lastName", 128)
-    val email = varchar("email", 128)
+    val firstName = varchar("firstName", LETTER_LENGTH)
+    val lastName = varchar("lastName", LETTER_LENGTH)
+    val email = varchar("email", LETTER_LENGTH)
 
     override val primaryKey = PrimaryKey(id)
 }

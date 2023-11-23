@@ -1,7 +1,6 @@
 package com.example.routes.user
 
 import com.example.extensions.isNotNull
-import com.example.extensions.orEmpty
 import com.example.models.User
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.call
@@ -17,7 +16,7 @@ fun Route.modifyUser(userList: MutableList<User>) {
         val lastName = call.parameters["lastName"]
         val email = call.parameters["email"]
 
-        val user = userList.find { it.id == userId }
+        val user = userList.find { user -> user.id == userId }
         if (firstName.isNotNull()) {
             user?.firstName = firstName.orEmpty()
         }

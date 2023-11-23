@@ -11,7 +11,7 @@ import io.ktor.server.routing.delete
 fun Route.deleteUser(userList: MutableList<User>) {
     delete("/{id?}") {
         val userId = call.parameters["id"]
-        val user = userList.find { it.id == userId }
+        val user = userList.find { user: User -> user.id == userId }
         if (user == null) {
             call.respondText(
                 "User Not Found.",

@@ -10,9 +10,8 @@ import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.post
 
-
 fun Route.signupRoute() {
-    post ("signup") {
+    post("signup") {
         val user = call.receive<User>()
         val userInserted = dbDaos.userDBDao
             .insertUser(firstName = user.firstName, lastName = user.lastName, email = user.email)
