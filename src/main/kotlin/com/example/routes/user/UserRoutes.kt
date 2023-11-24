@@ -1,6 +1,6 @@
 package com.example.routes.user
 
-import com.example.models.entities.User
+import com.example.models.response.User
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.route
 

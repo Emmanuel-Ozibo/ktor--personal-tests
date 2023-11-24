@@ -1,6 +1,6 @@
 package com.example.auth.login
 
-import com.example.models.entities.User
+import com.example.models.response.User
 
 interface LoginRepository {
     fun findUserByEmail(email: String): User?

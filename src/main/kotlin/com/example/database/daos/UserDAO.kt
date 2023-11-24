@@ -1,6 +1,6 @@
 package com.example.database.daos
 
-import com.example.models.entities.User
+import com.example.models.response.User
 import java.util.UUID
 
 interface UserDAO {

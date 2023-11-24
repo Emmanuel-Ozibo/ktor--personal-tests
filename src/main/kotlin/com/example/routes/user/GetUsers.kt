@@ -13,9 +13,7 @@ fun Route.getUsers() {
     get {
         val users = dbDaos.userDBDao.fetchUsers()
         call.respond(
-            Response(
-                code = HttpStatusCode.OK.value,
-                message = HttpStatusCode.OK.description,
+            Response.Success(
                 data = users
             )
         )
@@ -27,20 +25,15 @@ fun Route.getUsers() {
 
         if (user != null) {
             call.respond(
-                Response(
-                    code = HttpStatusCode.OK.value,
-                    message = HttpStatusCode.OK.description,
-                    data = user
-                )
+                Response.Success(data = user)
             )
         }
 
         if (user == null) {
             call.respond(
-                Response(
+                Response.Failure(
                     code = HttpStatusCode.NotFound.value,
                     message = "User not found.",
-                    data = null
                 )
             )
         }

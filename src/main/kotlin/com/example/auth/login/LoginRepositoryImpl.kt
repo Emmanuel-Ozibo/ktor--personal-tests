@@ -1,6 +1,6 @@
 package com.example.auth.login
 
-import com.example.models.entities.User
+import com.example.models.response.User
 
 class LoginRepositoryImpl: LoginRepository {
     override fun findUserByEmail(email: String): User? {

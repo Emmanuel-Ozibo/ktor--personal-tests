@@ -1,6 +1,6 @@
 package com.example.routes.user
 
-import com.example.models.entities.User
+import com.example.models.response.User
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.call
 import io.ktor.server.response.respond
