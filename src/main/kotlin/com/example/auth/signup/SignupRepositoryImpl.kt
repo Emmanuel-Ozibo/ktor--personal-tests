@@ -23,10 +23,10 @@ class SignupRepositoryImpl(private val resultRowToUserMapper: ResultRowToUserMap
     ): User? = dbQuery {
         val insertStatement = UserEntity.insert {
             it[UserEntity.firstName] = firstName
-            it[UserEntity.lastName] = firstName
-            it[UserEntity.email] = firstName
-            it[UserEntity.password] = firstName
-            it[UserEntity.token] = firstName
+            it[UserEntity.lastName] = lastName
+            it[UserEntity.email] = email
+            it[UserEntity.password] = passwordHash
+            it[UserEntity.token] = token
         }
         val resultRow = insertStatement.resultedValues?.singleOrNull()
         if (resultRow != null) {

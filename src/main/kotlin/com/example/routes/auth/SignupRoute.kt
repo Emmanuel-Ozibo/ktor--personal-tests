@@ -31,7 +31,7 @@ fun Route.signupRoute(signupRepository: SignupRepository) {
                 )
 
                 if (savedUser != null) {
-                    call.respond(Response.Success(savedUser))
+                    call.respond(Response.Success(data = savedUser))
                 } else {
                     call.respond(
                         Response.Failure(

@@ -24,16 +24,16 @@ fun Route.loginRoute(loginRepository: LoginRepository) {
 
 
             else -> {
-                val user = loginRepository.findUserByEmail(loginReq.email)
-                if (user != null) {
-                    if (loginReq.password == user.password) {
-
-                    } else {
-
-                    }
-                } else {
-                    // send failure
-                }
+//                val user = loginRepository.findUserByEmail(loginReq.email)
+//                if (user != null) {
+//                    if (loginReq.password == user.password) {
+//
+//                    } else {
+//
+//                    }
+//                } else {
+//                    // send failure
+//                }
             }
         }
 

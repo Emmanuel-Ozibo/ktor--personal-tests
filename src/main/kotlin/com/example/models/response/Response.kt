@@ -1,16 +1,17 @@
 package com.example.models.response
 
 import io.ktor.http.HttpStatusCode
+import kotlinx.serialization.Serializable
 
-sealed class Response<T>(
-    val code: Int,
-    val message: String,
-    val data: T? = null
-) {
-    class Success<T>(data: T?): Response<T>(code = HttpStatusCode.OK.value, data = data,
-        message = HttpStatusCode.OK.description)
+sealed class Response<out T> {
 
-    class Failure(code: Int, message: String): Response<Nothing>(
-        code, message
-    )
+    @Serializable
+    data class Success<out T>(
+        val code: Int = HttpStatusCode.OK.value,
+        val message: String = HttpStatusCode.OK.description,
+        val data: T?
+    ) : Response<T>()
+
+    @Serializable
+    data class Failure(val code: Int, val message: String) : Response<Nothing>()
 }
