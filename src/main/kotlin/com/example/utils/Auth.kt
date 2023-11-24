@@ -5,11 +5,6 @@ import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
 object Auth {
-    private lateinit var secretKey: String
-    fun init(secretKey: String) {
-        this.secretKey = secretKey
-    }
-
     private val hashKey = hex("898748674728934843")
 
     private val hmacKey = SecretKeySpec(hashKey, "HmacSHA1")

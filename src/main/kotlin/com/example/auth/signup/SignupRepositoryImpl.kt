@@ -25,7 +25,7 @@ class SignupRepositoryImpl(private val resultRowToUserMapper: ResultRowToUserMap
             it[UserEntity.firstName] = firstName
             it[UserEntity.lastName] = lastName
             it[UserEntity.email] = email
-            it[UserEntity.password] = passwordHash
+            it[password] = passwordHash
             it[UserEntity.token] = token
         }
         val resultRow = insertStatement.resultedValues?.singleOrNull()
