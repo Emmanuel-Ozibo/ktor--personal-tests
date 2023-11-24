@@ -1,7 +1,7 @@
 package com.example.routes.user
 
 import com.example.extensions.isNotNull
-import com.example.models.User
+import com.example.models.entities.User
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.call
 import io.ktor.server.response.respond

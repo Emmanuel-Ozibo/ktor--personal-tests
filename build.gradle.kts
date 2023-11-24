@@ -62,12 +62,15 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm")
     implementation("io.ktor:ktor-server-resources-jvm")
     implementation("io.ktor:ktor-server-auth-jvm")
+    implementation("io.ktor:ktor-server-request-validation-jvm")
+    implementation("io.ktor:ktor-server-status-pages-jvm")
 
     // DB
     implementation("org.jetbrains.exposed:exposed-core:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-dao:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposed_version")
     implementation("com.h2database:h2:$h2_version")
+    implementation("io.ktor:ktor-server-host-common-jvm:2.3.6")
 
     // Testing
     testImplementation("io.ktor:ktor-server-tests-jvm")

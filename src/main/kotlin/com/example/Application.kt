@@ -22,8 +22,8 @@ fun Application.module() {
     configureResources()
     configureMonitoring()
     configureSerialization()
-    configureRouting()
     configureAuthentication()
     configureStatusPages()
     configureValidation()
+    configureRouting()
 }

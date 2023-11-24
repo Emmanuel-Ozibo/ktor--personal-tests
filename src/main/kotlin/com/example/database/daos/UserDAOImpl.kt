@@ -1,8 +1,8 @@
 package com.example.database.daos
 
 import com.example.database.DatabaseFactory.dbQuery
-import com.example.models.User
-import com.example.models.Users
+import com.example.models.entities.UserEntity
+import com.example.models.response.User
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.deleteWhere
@@ -14,43 +14,44 @@ import java.util.UUID
 
 class UserDAOImpl : UserDAO {
     override suspend fun insertUser(firstName: String, lastName: String, email: String) = dbQuery {
-        val inserted = Users.insert {
-            it[Users.firstName] = firstName
-            it[Users.lastName] = lastName
-            it[Users.email] = email
+        val inserted = UserEntity.insert {
+            it[UserEntity.firstName] = firstName
+            it[UserEntity.lastName] = lastName
+            it[UserEntity.email] = email
         }
         inserted.resultedValues?.singleOrNull()?.let(::mapRowToUser)
     }
 
     override suspend fun fetchUsers(): List<User> = dbQuery {
-        Users.selectAll().map(::mapRowToUser)
+        UserEntity.selectAll().map(::mapRowToUser)
     }
 
     override suspend fun fetchUser(id: UUID): User? = dbQuery {
-        Users
-            .select { Users.id eq id }
+        UserEntity
+            .select { UserEntity.id eq id }
             .map(::mapRowToUser)
             .singleOrNull()
     }
 
     override suspend fun editUser(id: UUID, firstName: String, lastName: String, email: String) = dbQuery {
-        Users.update({ Users.id eq id }) {
-            it[Users.firstName] = firstName
-            it[Users.lastName] = lastName
-            it[Users.email] = email
+        UserEntity.update({ UserEntity.id eq id }) {
+            it[UserEntity.firstName] = firstName
+            it[UserEntity.lastName] = lastName
+            it[UserEntity.email] = email
         } > 0
     }
 
     override suspend fun deleteUser(id: UUID): Boolean = dbQuery {
-        Users.deleteWhere { Users.id eq id } > 0
+        UserEntity.deleteWhere { UserEntity.id eq id } > 0
     }
 
     private fun mapRowToUser(resultRow: ResultRow): User {
         return User(
-            id = resultRow[Users.id].toString(),
-            firstName = resultRow[Users.firstName],
-            lastName = resultRow[Users.lastName],
-            email = resultRow[Users.email]
+            id = resultRow[UserEntity.id].toString(),
+            firstName = resultRow[UserEntity.firstName],
+            lastName = resultRow[UserEntity.lastName],
+            email = resultRow[UserEntity.email],
+            token = ""
         )
     }
 }

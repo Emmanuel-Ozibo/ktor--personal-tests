@@ -1,6 +1,6 @@
 package com.example.database
 
-import com.example.models.Users
+import com.example.models.entities.UserEntity
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import org.jetbrains.exposed.sql.Database
@@ -14,7 +14,7 @@ object DatabaseFactory {
         val jdbcURL = "jdbc:h2:file:./build/db"
         val database = Database.connect(jdbcURL, driverClassName)
         transaction(database) {
-            SchemaUtils.create(Users)
+            SchemaUtils.create(UserEntity)
         }
     }
 
