@@ -6,6 +6,8 @@ import com.example.plugins.configureMonitoring
 import com.example.plugins.configureResources
 import com.example.plugins.configureRouting
 import com.example.plugins.configureSerialization
+import com.example.plugins.configureStatusPages
+import com.example.plugins.configureValidation
 import io.ktor.server.application.Application
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
@@ -22,4 +24,6 @@ fun Application.module() {
     configureSerialization()
     configureRouting()
     configureAuthentication()
+    configureStatusPages()
+    configureValidation()
 }
