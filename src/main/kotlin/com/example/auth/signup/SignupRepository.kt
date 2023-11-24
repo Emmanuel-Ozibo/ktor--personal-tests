@@ -7,7 +7,10 @@ interface SignupRepository {
     suspend fun findUserByEmail(email: String): ResultRow?
 
     suspend fun saveUser(
-        firstName: String, lastName: String, email: String, passwordHash: String,
+        firstName: String,
+        lastName: String,
+        email: String,
+        passwordHash: String,
         token: String
     ): User?
 }

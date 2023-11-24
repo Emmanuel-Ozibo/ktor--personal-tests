@@ -16,7 +16,7 @@ fun Application.configureStatusPages() {
             call.respondText(text = "500: $cause", status = HttpStatusCode.InternalServerError)
         }
 
-        exception<RequestValidationException>{ call: ApplicationCall, cause ->
+        exception<RequestValidationException> { call: ApplicationCall, cause ->
             call.respond(
                 Response.Failure(
                     code = HttpStatusCode.BadRequest.value,

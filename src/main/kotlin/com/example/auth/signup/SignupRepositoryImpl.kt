@@ -8,7 +8,7 @@ import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 
-class SignupRepositoryImpl(private val resultRowToUserMapper: ResultRowToUserMapper): SignupRepository {
+class SignupRepositoryImpl(private val resultRowToUserMapper: ResultRowToUserMapper) : SignupRepository {
     override suspend fun findUserByEmail(email: String): ResultRow? = dbQuery {
         UserEntity.select { UserEntity.email eq email }
             .singleOrNull()
@@ -31,7 +31,8 @@ class SignupRepositoryImpl(private val resultRowToUserMapper: ResultRowToUserMap
         val resultRow = insertStatement.resultedValues?.singleOrNull()
         if (resultRow != null) {
             resultRowToUserMapper.mapFromInput(resultRow)
-        } else null
+        } else {
+            null
+        }
     }
-
 }

@@ -4,7 +4,7 @@ import com.example.models.entities.UserEntity
 import com.example.models.response.User
 import org.jetbrains.exposed.sql.ResultRow
 
-class ResultRowToUserMapper: Mapper<ResultRow, User> {
+class ResultRowToUserMapper : Mapper<ResultRow, User> {
     override fun mapFromInput(input: ResultRow): User {
         return User(
             id = input[UserEntity.id].toString(),
@@ -18,5 +18,4 @@ class ResultRowToUserMapper: Mapper<ResultRow, User> {
     override fun mapToInput(output: User): ResultRow {
         TODO("Not yet implemented")
     }
-
 }

@@ -33,7 +33,7 @@ fun Route.getUsers() {
             call.respond(
                 Response.Failure(
                     code = HttpStatusCode.NotFound.value,
-                    message = "User not found.",
+                    message = "User not found."
                 )
             )
         }

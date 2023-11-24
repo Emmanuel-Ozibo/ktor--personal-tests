@@ -12,13 +12,12 @@ import io.ktor.server.routing.Route
 import io.ktor.server.routing.post
 
 fun Route.signupRoute(signupRepository: SignupRepository) {
-
     post("signup") {
         val signupReq = call.receive<SignupRequest>()
         val user = signupRepository.findUserByEmail(email = signupReq.email)
         when {
             user == null -> {
-                //save user.
+                // save user.
                 val passwordHash = Auth.convertToHash(signupReq.password)
                 val token = "e"
 
@@ -46,7 +45,7 @@ fun Route.signupRoute(signupRepository: SignupRepository) {
                 call.respond(
                     Response.Failure(
                         code = HttpStatusCode.Conflict.value,
-                        message = "User has already been registered",
+                        message = "User has already been registered"
                     )
                 )
             }

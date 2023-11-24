@@ -1,13 +1,12 @@
 package com.example.utils
 
-import io.ktor.util.KtorExperimentalAPI
 import io.ktor.util.hex
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
 object Auth {
     private lateinit var secretKey: String
-    fun init(secretKey: String){
+    fun init(secretKey: String) {
         this.secretKey = secretKey
     }
 
