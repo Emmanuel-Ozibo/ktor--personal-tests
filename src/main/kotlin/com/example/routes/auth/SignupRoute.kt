@@ -33,6 +33,7 @@ fun Route.signupRoute(signupRepository: SignupRepository) {
                     call.respond(Response.Success(data = savedUser))
                 } else {
                     call.respond(
+                        status = HttpStatusCode.InternalServerError,
                         Response.Failure(
                             code = HttpStatusCode.InternalServerError.value,
                             message = "User registration failed, try again later."
@@ -43,6 +44,7 @@ fun Route.signupRoute(signupRepository: SignupRepository) {
 
             else -> {
                 call.respond(
+                    status = HttpStatusCode.Conflict,
                     Response.Failure(
                         code = HttpStatusCode.Conflict.value,
                         message = "User has already been registered"
