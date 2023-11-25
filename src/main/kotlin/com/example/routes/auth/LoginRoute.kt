@@ -52,4 +52,3 @@ fun Route.loginRoute(loginRepository: LoginRepository) {
         }
     }
 }
-

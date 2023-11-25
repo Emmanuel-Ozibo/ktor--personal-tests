@@ -7,7 +7,6 @@ import com.example.models.entities.UserEntity
 import com.example.models.response.User
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.insert
-import org.jetbrains.exposed.sql.select
 
 class SignupRepositoryImpl(
     private val userDAO: UserDAO,

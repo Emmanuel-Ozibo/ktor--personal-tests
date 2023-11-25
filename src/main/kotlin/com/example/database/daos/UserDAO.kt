@@ -1,8 +1,8 @@
 package com.example.database.daos
 
 import com.example.models.response.User
-import java.util.UUID
 import org.jetbrains.exposed.sql.ResultRow
+import java.util.UUID
 
 interface UserDAO {
     suspend fun insertUser(firstName: String, lastName: String, email: String): User?

@@ -15,10 +15,12 @@ fun Application.configureRouting() {
     routing {
         testRoute()
         userRouting()
-        signupRoute(signupRepository = SignupRepositoryImpl(
-            userDAO = UserDAOImpl(),
-            resultRowToUserMapper = ResultRowToUserMapper()
-        ))
+        signupRoute(
+            signupRepository = SignupRepositoryImpl(
+                userDAO = UserDAOImpl(),
+                resultRowToUserMapper = ResultRowToUserMapper()
+            )
+        )
         loginRoute(
             loginRepository = LoginRepositoryImpl(
                 userDAO = UserDAOImpl()
