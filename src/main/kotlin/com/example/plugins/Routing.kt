@@ -1,7 +1,10 @@
 package com.example.plugins
 
+import com.example.auth.login.LoginRepositoryImpl
 import com.example.auth.signup.SignupRepositoryImpl
+import com.example.database.daos.UserDAOImpl
 import com.example.mappers.ResultRowToUserMapper
+import com.example.routes.auth.loginRoute
 import com.example.routes.auth.signupRoute
 import com.example.routes.testRoute
 import com.example.routes.user.userRouting
@@ -12,6 +15,14 @@ fun Application.configureRouting() {
     routing {
         testRoute()
         userRouting()
-        signupRoute(signupRepository = SignupRepositoryImpl(ResultRowToUserMapper()))
+        signupRoute(signupRepository = SignupRepositoryImpl(
+            userDAO = UserDAOImpl(),
+            resultRowToUserMapper = ResultRowToUserMapper()
+        ))
+        loginRoute(
+            loginRepository = LoginRepositoryImpl(
+                userDAO = UserDAOImpl()
+            )
+        )
     }
 }

@@ -45,6 +45,11 @@ class UserDAOImpl : UserDAO {
         UserEntity.deleteWhere { UserEntity.id eq id } > 0
     }
 
+    override suspend fun findUserByEmail(email: String): ResultRow? = dbQuery {
+        UserEntity.select { UserEntity.email eq email }
+            .singleOrNull()
+    }
+
     private fun mapRowToUser(resultRow: ResultRow): User {
         return User(
             id = resultRow[UserEntity.id].toString(),

@@ -18,9 +18,10 @@ fun Application.configureStatusPages() {
 
         exception<RequestValidationException> { call: ApplicationCall, cause ->
             call.respond(
+                status = HttpStatusCode.BadRequest,
                 Response.Failure(
                     code = HttpStatusCode.BadRequest.value,
-                    message = cause.message.orEmpty()
+                    message = cause.reasons.joinToString(",")
                 )
             )
         }
