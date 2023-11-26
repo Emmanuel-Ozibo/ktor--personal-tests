@@ -16,7 +16,7 @@ import io.ktor.server.response.respond
 
 fun Application.configureAuthentication(
     tokenService: TokenService,
-    userRepository: SignupRepository,
+    signupRepository: SignupRepository,
     mapper: ResultRowToUserMapper
 ) {
     val myRealm = environment.config.property("jwt.realm").getString()
@@ -29,7 +29,7 @@ fun Application.configureAuthentication(
             validate { jwtCred ->
                 val payload = jwtCred.payload
                 val userEmail = payload.getClaim(TokenService.USER_EMAIL).asString()
-                val userResultRow = userRepository.findUserByEmail(userEmail)
+                val userResultRow = signupRepository.findUserByEmail(userEmail)
                 if (userResultRow != null)
                     mapper.mapFromInput(userResultRow)
                 else null

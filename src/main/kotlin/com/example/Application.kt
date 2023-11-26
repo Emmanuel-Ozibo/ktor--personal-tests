@@ -1,6 +1,9 @@
 package com.example
 
+import com.example.auth.signup.SignupRepositoryImpl
 import com.example.database.DatabaseFactory
+import com.example.database.daos.UserDAOImpl
+import com.example.mappers.ResultRowToUserMapper
 import com.example.plugins.configureAuthentication
 import com.example.plugins.configureMonitoring
 import com.example.plugins.configureResources
@@ -31,7 +34,14 @@ fun Application.module() {
     configureResources()
     configureMonitoring()
     configureSerialization()
-    configureAuthentication()
+    configureAuthentication(
+        tokenService = tokenService,
+        signupRepository = SignupRepositoryImpl(
+            userDAO = UserDAOImpl(),
+            resultRowToUserMapper = ResultRowToUserMapper()
+        ),
+        mapper = ResultRowToUserMapper()
+    )
     configureStatusPages()
     configureValidation()
     configureRouting(
