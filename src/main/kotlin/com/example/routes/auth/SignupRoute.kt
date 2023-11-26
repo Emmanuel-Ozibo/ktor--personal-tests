@@ -2,7 +2,6 @@ package com.example.routes.auth
 
 import com.example.auth.signup.SignupRepository
 import com.example.auth.signup.SignupRequest
-import com.example.models.entities.UserEntity
 import com.example.models.response.Response
 import com.example.utils.Auth
 import com.example.utils.TokenService

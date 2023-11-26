@@ -13,8 +13,10 @@ import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.post
 
-fun Route.loginRoute(loginRepository: LoginRepository,
-                     tokenService: TokenService) {
+fun Route.loginRoute(
+    loginRepository: LoginRepository,
+    tokenService: TokenService
+) {
     post("login") {
         val loginReq = call.receive<LoginRequest>()
         val user = loginRepository.findUserByEmail(loginReq.email)

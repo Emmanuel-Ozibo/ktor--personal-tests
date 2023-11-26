@@ -1,8 +1,8 @@
 package com.example.auth.login
 
 import com.example.models.response.User
-import java.util.UUID
 import org.jetbrains.exposed.sql.ResultRow
+import java.util.UUID
 
 interface LoginRepository {
     suspend fun findUserByEmail(email: String): ResultRow?

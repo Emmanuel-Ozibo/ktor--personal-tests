@@ -4,8 +4,8 @@ import com.example.database.daos.UserDAO
 import com.example.models.entities.UserEntity
 import com.example.models.response.User
 import org.jetbrains.exposed.sql.ResultRow
-import java.util.UUID
 import org.jetbrains.exposed.sql.update
+import java.util.UUID
 
 class LoginRepositoryImpl(
     private val userDAO: UserDAO

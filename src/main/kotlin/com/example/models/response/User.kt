@@ -10,4 +10,4 @@ data class User(
     var lastName: String,
     var email: String,
     val token: String
-): Principal
+) : Principal

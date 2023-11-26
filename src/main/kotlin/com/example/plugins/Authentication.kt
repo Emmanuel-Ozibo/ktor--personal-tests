@@ -8,9 +8,6 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import io.ktor.server.auth.Authentication
-import io.ktor.server.auth.UserIdPrincipal
-import io.ktor.server.auth.bearer
-import io.ktor.server.auth.jwt.JWTPrincipal
 import io.ktor.server.auth.jwt.jwt
 import io.ktor.server.response.respond
 
@@ -30,9 +27,11 @@ fun Application.configureAuthentication(
                 val payload = jwtCred.payload
                 val userEmail = payload.getClaim(TokenService.USER_EMAIL).asString()
                 val userResultRow = signupRepository.findUserByEmail(userEmail)
-                if (userResultRow != null)
+                if (userResultRow != null) {
                     mapper.mapFromInput(userResultRow)
-                else null
+                } else {
+                    null
+                }
             }
 
             challenge { _, _ ->
@@ -44,8 +43,6 @@ fun Application.configureAuthentication(
                     )
                 )
             }
-
-
         }
     }
 }

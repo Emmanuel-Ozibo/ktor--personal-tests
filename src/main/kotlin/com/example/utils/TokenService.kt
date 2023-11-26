@@ -14,6 +14,7 @@ class TokenService(
 
     companion object {
         const val USER_EMAIL = "user_email"
+        const val TEN_MINS = 600_000L
     }
 
     val verifier: JWTVerifier = JWT
@@ -22,12 +23,11 @@ class TokenService(
         .build()
 
     fun generateToken(email: String): String = JWT.create()
-            .withAudience(audience)
-            .withIssuer(issuer)
-            .withClaim(USER_EMAIL, email)
-            .withExpiresAt(expiresAt())
-            .sign(algorithm)
+        .withAudience(audience)
+        .withIssuer(issuer)
+        .withClaim(USER_EMAIL, email)
+        .withExpiresAt(expiresAt())
+        .sign(algorithm)
 
-
-    private fun expiresAt() = Date(System.currentTimeMillis() + (2 * 60 * 1000))
+    private fun expiresAt() = Date(System.currentTimeMillis() + TEN_MINS)
 }
