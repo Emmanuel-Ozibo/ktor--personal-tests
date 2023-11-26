@@ -1,6 +1,7 @@
 package com.example.auth.login
 
 import com.example.models.response.User
+import java.util.UUID
 import org.jetbrains.exposed.sql.ResultRow
 
 interface LoginRepository {
@@ -8,5 +9,5 @@ interface LoginRepository {
 
     suspend fun getUserWithID(userId: String?): User?
 
-    fun updateToken(userId: String, token: String)
+    suspend fun updateToken(userId: UUID, token: String): Boolean
 }

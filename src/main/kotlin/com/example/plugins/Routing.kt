@@ -8,10 +8,11 @@ import com.example.routes.auth.loginRoute
 import com.example.routes.auth.signupRoute
 import com.example.routes.testRoute
 import com.example.routes.user.userRouting
+import com.example.utils.TokenService
 import io.ktor.server.application.Application
 import io.ktor.server.routing.routing
 
-fun Application.configureRouting() {
+fun Application.configureRouting(tokenService: TokenService) {
     routing {
         testRoute()
         userRouting()
@@ -19,12 +20,14 @@ fun Application.configureRouting() {
             signupRepository = SignupRepositoryImpl(
                 userDAO = UserDAOImpl(),
                 resultRowToUserMapper = ResultRowToUserMapper()
-            )
+            ),
+            tokenService = tokenService
         )
         loginRoute(
             loginRepository = LoginRepositoryImpl(
                 userDAO = UserDAOImpl()
-            )
+            ),
+            tokenService = tokenService
         )
     }
 }

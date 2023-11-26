@@ -2,16 +2,22 @@ package com.example.routes.auth
 
 import com.example.auth.signup.SignupRepository
 import com.example.auth.signup.SignupRequest
+import com.example.models.entities.UserEntity
 import com.example.models.response.Response
 import com.example.utils.Auth
+import com.example.utils.TokenService
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.call
 import io.ktor.server.request.receive
+import io.ktor.server.response.header
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.post
 
-fun Route.signupRoute(signupRepository: SignupRepository) {
+fun Route.signupRoute(
+    signupRepository: SignupRepository,
+    tokenService: TokenService
+) {
     post("signup") {
         val signupReq = call.receive<SignupRequest>()
         val user = signupRepository.findUserByEmail(email = signupReq.email)
@@ -19,7 +25,7 @@ fun Route.signupRoute(signupRepository: SignupRepository) {
             user == null -> {
                 // save user.
                 val passwordHash = Auth.convertToHash(signupReq.password)
-                val token = "e"
+                val token = tokenService.generateToken(email = signupReq.email)
 
                 val savedUser = signupRepository.saveUser(
                     firstName = signupReq.firstName,
@@ -30,6 +36,7 @@ fun Route.signupRoute(signupRepository: SignupRepository) {
                 )
 
                 if (savedUser != null) {
+                    call.response.header("Auth-Token", token)
                     call.respond(Response.Success(data = savedUser))
                 } else {
                     call.respond(

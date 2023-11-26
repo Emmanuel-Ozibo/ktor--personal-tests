@@ -1,9 +1,11 @@
 package com.example.auth.login
 
 import com.example.database.daos.UserDAO
+import com.example.models.entities.UserEntity
 import com.example.models.response.User
 import org.jetbrains.exposed.sql.ResultRow
 import java.util.UUID
+import org.jetbrains.exposed.sql.update
 
 class LoginRepositoryImpl(
     private val userDAO: UserDAO
@@ -16,7 +18,9 @@ class LoginRepositoryImpl(
         return userDAO.fetchUser(UUID.fromString(userId))
     }
 
-    override fun updateToken(userId: String, token: String) {
-        TODO("Not yet implemented")
+    override suspend fun updateToken(userId: UUID, token: String): Boolean {
+        return UserEntity.update({ UserEntity.id eq userId }) {
+            it[UserEntity.token] = token
+        } > 0
     }
 }

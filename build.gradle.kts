@@ -64,6 +64,8 @@ dependencies {
     implementation("io.ktor:ktor-server-auth-jvm")
     implementation("io.ktor:ktor-server-request-validation-jvm")
     implementation("io.ktor:ktor-server-status-pages-jvm")
+    implementation("io.ktor:ktor-server-auth-jvm")
+    implementation("io.ktor:ktor-server-auth-jwt-jvm")
 
     // DB
     implementation("org.jetbrains.exposed:exposed-core:$exposed_version")
