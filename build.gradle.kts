@@ -66,6 +66,9 @@ dependencies {
     implementation("io.ktor:ktor-server-status-pages-jvm")
     implementation("io.ktor:ktor-server-auth-jvm")
     implementation("io.ktor:ktor-server-auth-jwt-jvm")
+    //implementation("org.apache.commons:commons-email:1.5")
+    //implementation("com.sendgrid:sendgrid-java:4.10.1")
+
 
     // DB
     implementation("org.jetbrains.exposed:exposed-core:$exposed_version")

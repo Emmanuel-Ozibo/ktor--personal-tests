@@ -12,6 +12,8 @@ import io.ktor.server.response.header
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.post
+import org.apache.commons.mail.DefaultAuthenticator
+import org.apache.commons.mail.SimpleEmail
 
 fun Route.signupRoute(
     signupRepository: SignupRepository,
@@ -36,6 +38,20 @@ fun Route.signupRoute(
 
                 if (savedUser != null) {
                     call.response.header("Auth-Token", token)
+                    //send OTP for email verification
+
+                    val email = SimpleEmail().apply {
+                        hostName = "smtp.googlemail.com"
+                        setSmtpPort(465)
+                        setAuthenticator(DefaultAuthenticator("email-account", "account-password"))
+                        isSSLOnConnect = true
+                        setFrom("sender-email-account")
+                        subject = "email-subject"
+                        setMsg("message-content")
+                        addTo("target-email-address")
+                    }
+                    email.send()
+
                     call.respond(Response.Success(data = savedUser))
                 } else {
                     call.respond(
